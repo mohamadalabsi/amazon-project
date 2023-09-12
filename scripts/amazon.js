@@ -1,5 +1,14 @@
+import {cart} from '../data/cart.js';
+
+// import {cart as mycart} from '../data/cart.js'; avoid conflict with as someting
+// const cart =[];
+
+
+  //  const cart =[]; we cant use cart again here because we aiready declare it in cart.js
+  // and this called naming conflict
   //  im amazon.html we have to load produts.js ( first) also products array and then generating it in a sperate file amazon.js 
   // the array products will becomming from products.js
+
   let productsHTML='';
 
 products.forEach((product)=>{
