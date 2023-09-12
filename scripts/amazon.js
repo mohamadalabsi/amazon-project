@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 // import {cart as mycart} from '../data/cart.js'; avoid conflict with as someting
@@ -70,39 +70,29 @@ products.forEach((product)=>{
 document.querySelector('.js-products-grid').innerHTML=productsHTML;
 
 
+
+
+  function updateCartQuantity(){
+    let cartQuantity=0 ;
+    cart.forEach((cartItem)=>{ 
+      cartQuantity+=cartItem.quantity;
+    });
+    // console.log(cartQuantity);
+    document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
+    //  console.log(cart);
+  }
+
 // focus here please
 // this querySelectorAll('.js-add-to-cart') will give us a list of all the js-add-to-cart button on the page 
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
   button.addEventListener('click',()=>{ 
      const productId=button.dataset.productId;
 
+     addToCart(productId);
 
-    let matchingItem;
+     updateCartQuantity();
 
-    cart.forEach((item)=>{
-      if (productId===item.productId) {
-         matchingItem=item;
-      }
 
-    });
-   
-    if (matchingItem) {
-      matchingItem.quantity+=1;
-    }
-    else{
-      cart.push({
-        productId:productId,
-        quantity :1
-       });
-    }
-
-    let cartQuantity=0 ;
-    cart.forEach((item)=>{ 
-      cartQuantity+=item.quantity;
-    });
-    // console.log(cartQuantity);
-    document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
-    //  console.log(cart);
    });
 
 
